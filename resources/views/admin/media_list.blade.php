@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('station_active')
+@section('media_list_active')
     active
 @endsection
 @section('content')
