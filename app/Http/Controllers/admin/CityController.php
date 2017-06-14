@@ -17,14 +17,14 @@ class CityController extends Controller{
         $city = new City;
         $city->name = $request->name;
         $city->save();
-        return redirect(url('admin/city'))->with(['message'=>['type' => 'success', 'title' => 'Created!', 'message'=>'New city created!', 'position' => 'bottomCenter']]);
+        return back()->with(['message'=>['type' => 'success', 'title' => 'Created!', 'message'=>'New city created!', 'position' => 'topCenter']]);
     }
 
     public function update(Request $request){
         $city = City::find($request->id);
         $city->name = $request->name;
         $city->save();
-        return redirect(url('admin/city'))->with(['message'=>['type' => 'success', 'title' => 'Updated!', 'message'=>'City name changed!', 'position' => 'bottomCenter']]);
+        return back()->with(['message'=>['type' => 'success', 'title' => 'Updated!', 'message'=>'City name changed!', 'position' => 'topCenter']]);
     }
 
     public function destroy($id){

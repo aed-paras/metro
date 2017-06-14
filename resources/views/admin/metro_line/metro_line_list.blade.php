@@ -5,14 +5,12 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-6 col-md-offset-1">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Metro Line</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="text-right"><a href="{{ url('/admin/metro_line/create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Metro Line</a></div>
-                    <hr>
                     @if(!$metro_line_list->isEmpty())
                         <table class="table table-responsive">
                             <thead>
@@ -21,7 +19,6 @@
                                     <th>Name</th>
                                     <th>City</th>
                                     <th>Image</th>
-                                    <th>Created at</th>
                                     <th class="text-right">Action</th>
                                 </tr>
                             </thead>
@@ -32,7 +29,6 @@
                                         <td><a href="{{ url('/admin/station/metro_line/'.$metro_line->id) }}" class="metro_line-name">{{ $metro_line->name }}</a></td>
                                         <td class="metro_line-city" data-city_id="{{ $metro_line->city_id }}">{{ $metro_line->city->name }}</td>
                                         <td><img src="{{ asset('storage/metro/'.$metro_line->image) }}" width="30px" height="30px"></td>
-                                        <td>{{ $metro_line->created_at }}</td>
                                         <td class="text-right">
                                             <a class="btn btn-warning btn-sm metro_line-edit" data-id="{{$metro_line->id}}" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil"></i> Edit</a>
                                             <a class="btn btn-danger btn-sm metro_line-delete" data-id="{{$metro_line->id}}"><i class="fa fa-trash"></i> Delete</a>
@@ -49,6 +45,65 @@
             </div>
 
         </div>
+
+        
+
+        <div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Add Metro Line</h3>
+				</div>
+				<div class="panel-body">
+                    @if($cities->isEmpty())
+                        <div class="alert alert-danger">
+                            There are no cities yet. Create cities to add metro lines in it.
+                            <br>
+                            <a href="{{ url('/admin/city') }}" class="btn btn-info btn-block"><i class="fa fa-plus"></i>Add City</a>
+                        </div>
+                    @else
+
+                    @endif
+					<form action="{{ url('/admin/metro_line/') }}" method="POST" class="form-horizontal create-metro-line-form" role="form" enctype="multipart/form-data">
+						{{ csrf_field() }}
+						@if (count($errors) > 0)
+							<div class="alert alert-danger">
+								<ul>
+									@foreach ($errors->all() as $error)
+										<li>{{ $error }}</li>
+									@endforeach
+								</ul>
+							</div>
+						@endif
+						<div class="row form-group">
+							<div class="col-sm-12">
+								<input type="text" name="name" id="metro_line" class="form-control" required="required" title="Metro Line Name" placeholder="Enter Metro Line Name">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-sm-12">
+								<select name="city_id" id="city_id_select_box" class="form-control">
+									@foreach($cities as $city)
+										<option value="{{$city->id}}" id="option_{{$city->id}}">{{$city->name}}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-sm-12">
+								<label>Select an image for metro sign: <input type="file" name="image_file" accept="image/*" data-max-size="2048" class="upload-file" required></label>
+								Max File Size: 2 MB
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-sm-12 text-right">
+								<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
     </div>
     <!-- Modal -->
     <div id="editModal" class="modal fade" role="dialog">

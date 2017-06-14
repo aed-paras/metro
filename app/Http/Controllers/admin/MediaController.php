@@ -28,8 +28,7 @@ class MediaController extends Controller{
         $media = new Media;
         $media->name = $request->name;
         $media->save();
-        Alert::success('Inserted new media '.$request->name, 'Done!');
-        return redirect()->back();
+        return back()->with(['message'=>['type' => 'success', 'title' => 'Created!', 'message'=>'New Media created!', 'position' => 'topCenter']]);
     }
 
     /**
@@ -40,11 +39,10 @@ class MediaController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-        $media = Media::find($request->id);
+        $media = Media::find($id);
         $media->name = $request->name;
         $media->save();
-        Alert::success('Updated media', 'Done!');
-        return redirect()->back();
+        return back()->with(['message'=>['type' => 'success', 'title' => 'Updated!', 'message'=>'Media changed!', 'position' => 'topCenter']]);
     }
 
     /**

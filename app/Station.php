@@ -10,4 +10,8 @@ class Station extends Model{
         return $this->belongsTo('App\City');
     }
 
+    public function metro_line(){
+        return $this->belongsTo('App\MetroLine');
+    }
+
 }

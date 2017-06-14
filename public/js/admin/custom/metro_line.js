@@ -7,10 +7,7 @@ $('.metro_line-delete').click(function () {
         data: { '_token': $('meta[name="csrf-token"]').attr('content') }
     }).done(function () {
         $("#metro_line_row_" + id).slideUp();
-        iziToast.success({
-            title: 'Deleted!',
-            message: ''
-        });
+        deleteNotification();
     });
 
 });

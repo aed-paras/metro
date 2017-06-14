@@ -10,4 +10,8 @@ class City extends Model{
         return $this->hasMany('App\Station');
     }
 
+    public function metro_lines(){
+        return $this->hasMany('App\MetroLine');
+    }
+
 }

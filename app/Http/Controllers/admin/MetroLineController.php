@@ -16,18 +16,8 @@ class MetroLineController extends Controller{
      */
     public function index(){
         $cities = \App\City::all();
-        $metro_line_list = MetroLine::paginate(20);
+        $metro_line_list = MetroLine::paginate(10);
         return view('admin.metro_line.metro_line_list', ['metro_line_list' => $metro_line_list, 'cities' => $cities]);
-    }
-
-    /**
-     * Show the form for creating a new metro line.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(){
-        $cities = \App\City::all();
-        return view('admin.metro_line.metro_line_create', ['cities' => $cities]); 
     }
 
     /**

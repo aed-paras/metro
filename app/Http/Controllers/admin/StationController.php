@@ -16,8 +16,9 @@ class StationController extends Controller{
     public function index($city_id){
         $city = \App\City::findOrFail($city_id);
         $cities = \App\City::all();
+        $metro_lines = \App\MetroLine::where('city_id', $city_id)->get();
         $stations = Station::where(['city_id' => $city_id])->paginate(20);
-        return view('admin.station', ['stations' => $stations, 'current_city' => $city, 'cities' => $cities]);
+        return view('admin.station', ['stations' => $stations, 'current_city' => $city, 'cities' => $cities, 'metro_lines' => $metro_lines]);
     }
 
     /**
@@ -29,10 +30,10 @@ class StationController extends Controller{
     public function store(Request $request){
         $station = new Station;
         $station->city_id = $request->city_id;
+        $station->metro_line_id = $request->metro_line_id;
         $station->name = $request->name;
         $station->save();
-        Alert::success('Inserted new station '.$request->name, 'Done!');
-        return redirect()->back();
+        return back()->with(['message'=>['type' => 'success', 'title' => 'Created!', 'message'=>'New Station created!', 'position' => 'topCenter']]);
     }
 
     /**
@@ -45,10 +46,10 @@ class StationController extends Controller{
     public function update(Request $request, $id){
         $station = Station::find($id);
         $station->city_id = $request->city_id;
+        $station->metro_line_id = $request->metro_line_id;
         $station->name = $request->name;
         $station->save();
-        Alert::success('Station Updated!', 'Done!');
-        return redirect()->back();
+        return back()->with(['message'=>['type' => 'success', 'title' => 'Updated!', 'message'=>'Station updated!', 'position' => 'topCenter']]);
     }
 
     /**
