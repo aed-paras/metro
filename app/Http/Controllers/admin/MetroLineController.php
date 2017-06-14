@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use \App\MetroLine;
+use File;
 
 class MetroLineController extends Controller{
     /**
@@ -39,11 +40,11 @@ class MetroLineController extends Controller{
         $this->validate($request, [
             'name' => 'required',
             'city_id' => 'required|integer',
-            'image_file' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $imageName = time().'.'.$request->image_file->getClientOriginalExtension();
-        $request->image_file->move(public_path('images/metro/'), $imageName);
+        $request->image_file->move(public_path('storage/metro/'), $imageName);
 
         $metro_line = new MetroLine;
         $metro_line->city_id = $request->city_id;
@@ -66,8 +67,7 @@ class MetroLineController extends Controller{
         $metro_line->city_id = $request->city_id;
         $metro_line->name = $request->name;
         $metro_line->save();
-        Alert::success('Metro Line Updated!', 'Done!');
-        return redirect()->back();
+        return back()->with(['message'=>['type' => 'success', 'title' => 'Updated!', 'message'=>'Metro Line changed!', 'position' => 'topCenter']]);
     }
 
     /**
@@ -78,8 +78,11 @@ class MetroLineController extends Controller{
      */
     public function destroy($id){
         // Delete all stations in it
-        
+
         $metro_line = MetroLine::find($id);
+
+        File::delete('storage/metro/' . $metro_line->image);
+
         $metro_line->delete();
         return;
     }

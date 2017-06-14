@@ -29,9 +29,9 @@
                                 @foreach($metro_line_list as $metro_line)
                                     <tr class="metro_line_row" id="metro_line_row_{{$metro_line->id}}">
                                         <td>{{ $metro_line->id }}</td>
-                                        <td><a href="{{ url('/admin/metro_lines/'.$metro_line->id) }}" class="metro_line-name">{{ $metro_line->name }}</a></td>
-                                        <td>{{ $metro_line->city->name }}</td>
-                                        <td><img src="{{ asset('images/metro/'.$metro_line->image) }}" width="30px" height="30px"></td>
+                                        <td><a href="{{ url('/admin/station/metro_line/'.$metro_line->id) }}" class="metro_line-name">{{ $metro_line->name }}</a></td>
+                                        <td class="metro_line-city" data-city_id="{{ $metro_line->city_id }}">{{ $metro_line->city->name }}</td>
+                                        <td><img src="{{ asset('storage/metro/'.$metro_line->image) }}" width="30px" height="30px"></td>
                                         <td>{{ $metro_line->created_at }}</td>
                                         <td class="text-right">
                                             <a class="btn btn-warning btn-sm metro_line-edit" data-id="{{$metro_line->id}}" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil"></i> Edit</a>
@@ -58,7 +58,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Edit Station Name</h4>
+                    <h4 class="modal-title">Edit Merto Line</h4>
                 </div>
                 <form action="{{ url('/admin/metro_line') }}" method="POST" role="form" id="editModalForm" enctype="multipart/form-data">
                     <div class="modal-body">
@@ -67,10 +67,11 @@
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
                             {{-- <input type="hidden" name="id" id="modal-metro_line-id" required> --}}
-                            <label for="new-metro_line-name">New Station Name</label>
+                            <label for="new-metro_line-name">New Metro Line Name</label>
                             <input type="text" name="name" class="form-control" id="new-metro_line-name" placeholder="New Station Name" required>
                         </div>
                         <div class="form-group">
+                            <label for="new-metro_line-city">New Metro Line City</label>
                             <select name="city_id" id="city_id_select_box" class="form-control">
                                 @foreach($cities as $city)
                                     <option value="{{$city->id}}" id="option_{{$city->id}}">{{$city->name}}</option>

@@ -39,13 +39,13 @@
 						</div>
 						<div class="row form-group">
 							<div class="col-sm-12">
-								<label>Select an image for metro sign: <input type="file" name="image_file" accept="image/*" data-max-size="2048" class="upload-file"></label>
+								<label>Select an image for metro sign: <input type="file" name="image_file" accept="image/*" data-max-size="2048" class="upload-file" required></label>
 								Max File Size: 2 MB
 							</div>
 						</div>
 						<div class="row form-group">
 							<div class="col-sm-12 text-right">
-								<button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Add Metro Line</button>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
 							</div>
 						</div>
 					</form>
