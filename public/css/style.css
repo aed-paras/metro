@@ -1,0 +1,16 @@
+.select_city_block{
+    /*padding: 10px;*/
+}
+.city-block{
+    background: #2196f3;
+    padding: 10px;
+    color: #fff;
+    width: 20%;
+    margin: 20px;
+    cursor: pointer;
+    text-align: center;
+    transition: all .3s;
+}
+.city-block:hover{
+    background: #32a7f4;
+}
