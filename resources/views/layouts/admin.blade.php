@@ -88,7 +88,7 @@
                     </a>
                 </li>
                 <li class="@yield('panel_type_active')">
-                    <a href="{{ url('admin/panel_list') }}">
+                    <a href="{{ url('admin/panel_type') }}">
                         <i class="fa fa-tasks"></i>
                         <p>Panel Types</p>
                     </a>

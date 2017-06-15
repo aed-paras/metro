@@ -42,12 +42,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminauth', 'namespace' => '
     Route::put('/media/{id}', 'MediaController@update');
     Route::delete('/media/{id}', 'MediaController@destroy');
     
-    // Panels
-    Route::get('/panel_list', 'PanelController@index');
+    // Panel Types
+    Route::get('/panel_type', 'PanelTypeController@index');
+    Route::post('/panel_type', 'PanelTypeController@store');
+    Route::put('/panel_type/{id}', 'PanelTypeController@update');
+    Route::delete('/panel_type/{id}', 'PanelTypeController@destroy');
+    
+    // Panel
+    Route::get('/panel/{station_id}', 'PanelController@index');
     Route::post('/panel', 'PanelController@store');
     Route::put('/panel/{id}', 'PanelController@update');
     Route::delete('/panel/{id}', 'PanelController@destroy');
-       
-
 
 });

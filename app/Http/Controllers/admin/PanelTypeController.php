@@ -5,18 +5,17 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use \App\Panel;
+use \App\PanelType;
 
-class PanelController extends Controller{
+class PanelTypeController extends Controller{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($station_id){
-        $panel_list = Panel::where('station_id', $station_id)->get();
-        $station = \App\Station::find($station_id);
-        return view('admin.panel.panel_list', ['panel_list' => $panel_list, 'station' => $station]);
+    public function index(){
+        $panel_type_list = PanelType::paginate(20);
+        return view('admin.panel_type', ['panel_type_list' => $panel_type_list]);
     }
 
     /**
@@ -26,10 +25,10 @@ class PanelController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        $panel = new Panel;
-        $panel->name = $request->name;
-        $panel->save();
-        return back();
+        $panel_type = new PanelType;
+        $panel_type->name = $request->name;
+        $panel_type->save();
+        return back()->with(['message'=>['type' => 'success', 'title' => 'Created!', 'message'=>'New panel type created!', 'position' => 'topCenter']]);
     }
 
     /**
@@ -40,10 +39,10 @@ class PanelController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-        $panel = Panel::find($request->id);
+        $panel = PanelType::find($request->id);
         $panel->name = $request->name;
         $panel->save();
-        return back();
+        return back()->with(['message'=>['type' => 'success', 'title' => 'Updated!', 'message'=>'Panel type updated!', 'position' => 'topCenter']]);
     }
 
     /**
@@ -53,7 +52,7 @@ class PanelController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){
-        $panel = Panel::find($id);
+        $panel = PanelType::find($id);
         $panel->delete();
         return;
     }

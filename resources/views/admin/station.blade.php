@@ -64,7 +64,7 @@
                                 @foreach($stations as $station)
                                     <tr class="station_row" id="station_row_{{$station->id}}">
                                         <td>{{ $station->id }}</td>
-                                        <td><a href="{{ url('/admin/stations/'.$station->id) }}" class="station-name">{{ $station->name }}</a></td>
+                                        <td><a href="{{ url('/admin/panel/'.$station->id) }}" class="station-name">{{ $station->name }}</a></td>
                                         <td class="station-metro_line" data-line_id="{{ $station->metro_line_id }}">{{ $station->metro_line->name }}</td>
                                         <td class="text-right">
                                             <a class="btn btn-warning btn-sm station-edit" data-id="{{$station->id}}" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil"></i> Edit</a>

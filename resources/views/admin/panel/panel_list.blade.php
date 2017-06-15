@@ -1,33 +1,19 @@
 @extends('layouts.admin')
 
-@section('panel_type_active')
-    active
-@endsection
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            
-            <div class="page-header">
-                <h4>Add Panel</h4>
-            </div>
-            <form action="{{ url('/admin/panel/') }}" method="POST" class="form-horizontal" role="form">
-                {{ csrf_field() }}
-                <div class="row form-group">
-                    <div class="col-sm-10">
-                        <input type="text" name="name" id="panel" class="form-control" required="required" title="Panel Name" placeholder="Enter Panel Name">
-                    </div>
-                    <div class="col-sm-2 text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Add Panel</button>
-                    </div>
-                </div>
-            </form>
 
+            <div class="page-header">
+                <h4>Panels | <small>{{ $station->name }} Station </small> &nbsp;&nbsp;<a href="{{url('/admin/stations/'.$station->city->id)}}" class="btn btn-default btn-sm">Change</a></h4>
+            </div>
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Panel List</h3>
                 </div>
                 <div class="panel-body">
+                    
                     @if(!$panel_list->isEmpty())
                         <table class="table table-responsive">
                             <thead>
@@ -57,7 +43,6 @@
                     @else
                         <div><p class="text-warning text-center">No Panel Created Yet.</p></div>
                     @endif
-                    {{ $panel_list->links() }}
                 </div>
             </div>
 
