@@ -11,7 +11,7 @@
                     {{ csrf_field() }}
                     <div class="row form-group">
                         <div class="col-sm-10">
-                            <input type="text" name="name" id="city" class="form-control" required="required" title="City" placeholder="Enter City">
+                            <input type="text" name="name" id="city" class="form-control" required="required" title="City" placeholder="Enter City" autofocus="on">
                         </div>
                         <div class="col-sm-2 text-right">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Add City</button>

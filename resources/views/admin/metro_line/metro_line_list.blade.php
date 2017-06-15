@@ -76,7 +76,7 @@
 						@endif
 						<div class="row form-group">
 							<div class="col-sm-12">
-								<input type="text" name="name" id="metro_line" class="form-control" required="required" title="Metro Line Name" placeholder="Enter Metro Line Name">
+								<input type="text" name="name" id="metro_line" class="form-control" required="required" title="Metro Line Name" placeholder="Enter Metro Line Name" autofocus="on">
 							</div>
 						</div>
 						<div class="row form-group">

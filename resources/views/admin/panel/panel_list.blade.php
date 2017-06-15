@@ -8,19 +8,19 @@
                 <h4>Panels | <small>{{ $station->name }} Station </small> &nbsp;&nbsp;<a href="{{url('/admin/stations/'.$station->city->id)}}" class="btn btn-default btn-sm">Change</a></h4>
             </div>
 
+            <div class="text-right"><a href="{{ url('/admin/panel/create/'.$station->id) }}" class="btn btn-primary"><i class="fa fa-plus"></i> Create new Panel</a></div>
+            <br>
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Panel List</h3>
                 </div>
                 <div class="panel-body">
-                    
                     @if(!$panel_list->isEmpty())
                         <table class="table table-responsive">
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Created at</th>
                                     <th class="text-right">Action</th>
                                 </tr>
                             </thead>
@@ -29,7 +29,6 @@
                                     <tr class="panel_row" id="panel_row_{{$panel->id}}">
                                         <td>{{ $panel->id }}</td>
                                         <td>{{ $panel->name }}</td>
-                                        <td>{{ $panel->created_at }}</td>
                                         <td class="text-right">
                                             <a class="btn btn-warning btn-sm panel-edit" data-id="{{$panel->id}}" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil"></i> Edit</a>
                                             <a class="btn btn-danger btn-sm panel-delete" data-id="{{$panel->id}}"><i class="fa fa-trash"></i> Delete</a>

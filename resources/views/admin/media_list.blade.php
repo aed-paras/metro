@@ -11,7 +11,7 @@
                     {{ csrf_field() }}
                     <div class="row form-group">
                         <div class="col-sm-10">
-                            <input type="text" name="name" id="media" class="form-control" required="required" title="Media" placeholder="Enter Media">
+                            <input type="text" name="name" id="media" class="form-control" required="required" title="Media" placeholder="Enter Media" autofocus="on">
                         </div>
                         <div class="col-sm-2 text-center">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Add Media</button>

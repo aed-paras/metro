@@ -16,7 +16,7 @@
                     {{ csrf_field() }}
                     <div class="row form-group">
                         <div class="col-sm-7">
-                            <input type="text" name="name" id="panel_type" class="form-control" required="required" title="Panel type" placeholder="Enter Panel type">
+                            <input type="text" name="name" id="panel_type" class="form-control" required="required" title="Panel type" placeholder="Enter Panel type" autofocus="on">
                         </div>
                         <div class="col-sm-5 text-right">
                             <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Add Panel Type</button>

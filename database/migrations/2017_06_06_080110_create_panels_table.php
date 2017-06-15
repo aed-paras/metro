@@ -16,15 +16,15 @@ class CreatePanelsTable extends Migration
             $table->increments('id');
             $table->integer('station_id')->unsigned();
             $table->integer('media_id')->unsigned();
-            $table->string('name');
+            $table->integer('panel_type_id')->unsigned();
             $table->float('width');
             $table->float('height');
-            $table->string('image')->nullable();
-            $table->integer('panel_type_id')->unsigned();
             $table->integer('units')->unsigned();
+            $table->integer('available')->unsigned();
+            $table->string('description', 4000)->nullable();
+            $table->string('image')->nullable();
             $table->integer('charges')->unsigned();
             $table->integer('actual_charges')->unsigned();
-            $table->integer('available')->unsigned();
             $table->timestamps();
         });
     }

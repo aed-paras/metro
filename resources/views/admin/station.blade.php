@@ -26,7 +26,7 @@
                 <div class="row form-group">
                     <div class="col-sm-5">
                         <label for="station">Station Name</label>                    
-                        <input type="text" name="name" id="station" class="form-control" required="required" title="Station Name" placeholder="Enter Station Name">
+                        <input type="text" name="name" id="station" class="form-control" required="required" title="Station Name" placeholder="Enter Station Name" autofocus="on">
                     </div>
                     <div class="col-sm-5">
                         <label for="metro_line_id_select_box">Metro Line</label>

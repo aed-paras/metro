@@ -50,6 +50,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminauth', 'namespace' => '
     
     // Panel
     Route::get('/panel/{station_id}', 'PanelController@index');
+    Route::get('/panel/create/{station_id}', 'PanelController@create');
     Route::post('/panel', 'PanelController@store');
     Route::put('/panel/{id}', 'PanelController@update');
     Route::delete('/panel/{id}', 'PanelController@destroy');
