@@ -13,8 +13,17 @@
                     <h3 class="panel-title">Add new Panel</h3>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" action="{{ url('/admin/panel/') }}" method="POST">
-
+                    <form class="form-horizontal" action="{{ url('/admin/panel/') }}" method="POST" enctype="multipart/form-data">
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        {{ csrf_field() }}
                         <input type="hidden" name="station_id" value="{{ $station->id }}">
 
                         <div class="form-group">
@@ -42,10 +51,10 @@
                         <div class="form-group">
                             <label for="inputWidth" class="col-lg-3 control-label">Size</label>
                             <div class="col-lg-4">
-                                <input type="number" class="form-control" id="inputWidth" placeholder="Width (Ft.)" name="width" required>
+                                <input type="number" class="form-control" id="inputWidth" placeholder="Width (Ft.)" name="width" step="any" required>
                             </div>
                             <div class="col-lg-4">
-                                <input type="number" class="form-control" id="inputHeight" placeholder="Heigth (Ft.)" name="height" required>
+                                <input type="number" class="form-control" id="inputHeight" placeholder="Heigth (Ft.)" name="height" step="any" required>
                             </div>
                         </div>
 
@@ -72,30 +81,28 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="charges" class="col-lg-3 control-label">Charges per month</label>
+                            <div class="col-lg-9">
+                                <input type="number" class="form-control" name="charges" placeholder="Charges (without discount)" step="any">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="charges" class="col-lg-3 control-label">Actual Charges per month</label>
+                            <div class="col-lg-9">
+                                <input type="number" class="form-control" name="actual_charges" placeholder="Charges (with discount)" step="any">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
                             <label for="image" class="col-lg-3 control-label">Panel Image</label>
                             <div class="col-lg-9">
 								<input type="file" name="image_file" accept="image/*" data-max-size="2048" class="upload-file" required>
                             </div>
                         </div>
                         <br>
-
-                        <div class="form-group">
-                            <label for="charges" class="col-lg-3 control-label">Charges</label>
-                            <div class="col-lg-9">
-                                <input type="number" class="form-control" name="charges" placeholder="Charges (without discount)">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="charges" class="col-lg-3 control-label">Actual Charges</label>
-                            <div class="col-lg-9">
-                                <input type="number" class="form-control" name="actual_charges" placeholder="Charges (with discount)">
-                            </div>
-                        </div>
-                        
                         <div class="form-group">
                             <div class="col-lg-9 col-lg-offset-3">
-                                <button type="reset" class="btn btn-default">Cancel</button>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save Panel</button>
                             </div>
                         </div>

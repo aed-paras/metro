@@ -7,10 +7,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth', 'namespace' => 'user'], function () {
+Route::group(['namespace' => 'user'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    
 });
-
 
 Route::group(['prefix' => 'admin', 'middleware' => 'adminauth', 'namespace' => 'admin'], function () {
     Route::get('/', 'HomeController@index');

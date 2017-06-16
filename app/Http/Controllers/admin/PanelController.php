@@ -39,10 +39,37 @@ class PanelController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
+
+        $this->validate($request, [
+            'station_id' => 'required|integer',
+            'media_id' => 'required|integer',
+            'width' => 'required|integer',
+            'height' => 'required|integer',
+            'units' => 'required|integer',
+            'available' => 'required|integer',
+            'description' => 'required|string|max:4000',
+            'charges' => 'required|integer',
+            'actual_charges' => 'required|integer',
+            'image_file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $imageName = time().'.'.$request->image_file->getClientOriginalExtension();
+        $request->image_file->move(public_path('storage/panels/'), $imageName);
+
         $panel = new Panel;
-        $panel->name = $request->name;
+        $panel->station_id = $request->station_id;
+        $panel->media_id = $request->media_id;
+        $panel->panel_type_id = $request->panel_type_id;
+        $panel->width = $request->width;
+        $panel->height = $request->height;
+        $panel->units = $request->units;
+        $panel->available = $request->available;
+        $panel->description = $request->description;
+        $panel->charges = $request->charges;
+        $panel->actual_charges = $request->actual_charges;
+        $panel->image = $imageName;
         $panel->save();
-        return back();
+        return back()->with(['message'=>['type' => 'success', 'title' => 'Created!', 'message'=>'New Panel created!', 'position' => 'topCenter']]);
     }
 
     /**

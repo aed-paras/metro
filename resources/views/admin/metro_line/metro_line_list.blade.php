@@ -61,45 +61,47 @@
                             <a href="{{ url('/admin/city') }}" class="btn btn-info btn-block"><i class="fa fa-plus"></i>Add City</a>
                         </div>
                     @else
-
+                        <form action="{{ url('/admin/metro_line/') }}" method="POST" class="form-horizontal create-metro-line-form" role="form" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <div class="row form-group">
+                                <div class="col-sm-12">
+                                    <input type="text" name="name" id="metro_line" class="form-control" required="required" title="Metro Line Name" placeholder="Enter Metro Line Name" autofocus="on">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-12">
+                                    <select name="city_id" id="city_id_select_box" class="form-control">
+                                        @foreach($cities as $city)
+                                            <option value="{{$city->id}}" id="option_{{$city->id}}">{{$city->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row form-group">
+                                <div class="col-sm-12">
+                                    <label>Select an image for metro sign: <input type="file" name="image_file" accept="image/*" data-max-size="2048" class="upload-file" required></label>
+                                    Max File Size: 2 MB
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row form-group">
+                                <div class="col-sm-12 text-right">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+                                </div>
+                            </div>
+                        </form>
                     @endif
-					<form action="{{ url('/admin/metro_line/') }}" method="POST" class="form-horizontal create-metro-line-form" role="form" enctype="multipart/form-data">
-						{{ csrf_field() }}
-						@if (count($errors) > 0)
-							<div class="alert alert-danger">
-								<ul>
-									@foreach ($errors->all() as $error)
-										<li>{{ $error }}</li>
-									@endforeach
-								</ul>
-							</div>
-						@endif
-						<div class="row form-group">
-							<div class="col-sm-12">
-								<input type="text" name="name" id="metro_line" class="form-control" required="required" title="Metro Line Name" placeholder="Enter Metro Line Name" autofocus="on">
-							</div>
-						</div>
-						<div class="row form-group">
-							<div class="col-sm-12">
-								<select name="city_id" id="city_id_select_box" class="form-control">
-									@foreach($cities as $city)
-										<option value="{{$city->id}}" id="option_{{$city->id}}">{{$city->name}}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
-						<div class="row form-group">
-							<div class="col-sm-12">
-								<label>Select an image for metro sign: <input type="file" name="image_file" accept="image/*" data-max-size="2048" class="upload-file" required></label>
-								Max File Size: 2 MB
-							</div>
-						</div>
-						<div class="row form-group">
-							<div class="col-sm-12 text-right">
-								<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
-							</div>
-						</div>
-					</form>
+
 				</div>
 			</div>
 

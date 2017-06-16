@@ -23,8 +23,8 @@ class CreatePanelsTable extends Migration
             $table->integer('available')->unsigned();
             $table->string('description', 4000)->nullable();
             $table->string('image')->nullable();
-            $table->integer('charges')->unsigned();
-            $table->integer('actual_charges')->unsigned();
+            $table->float('charges')->unsigned();
+            $table->float('actual_charges')->unsigned();
             $table->timestamps();
         });
     }

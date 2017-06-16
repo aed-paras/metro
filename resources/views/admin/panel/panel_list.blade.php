@@ -20,7 +20,13 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
+                                    <th>Media</th>
+                                    <th>Panel Type</th>
+                                    <th>Size</th>
+                                    <th>Units</th>
+                                    <th>Available</th>
+                                    <th>Charges</th>
+                                    <th>Discounted</th>
                                     <th class="text-right">Action</th>
                                 </tr>
                             </thead>
@@ -28,8 +34,15 @@
                                 @foreach($panel_list as $panel)
                                     <tr class="panel_row" id="panel_row_{{$panel->id}}">
                                         <td>{{ $panel->id }}</td>
-                                        <td>{{ $panel->name }}</td>
+                                        <td>{{ $panel->media->name }}</td>
+                                        <td>{{ $panel->panel_type->name }}</td>
+                                        <td>{{ $panel->width }} Ft. {{ $panel->height }} Ft.</td>
+                                        <td>{{ $panel->units }}</td>
+                                        <td>{{ $panel->available }}</td>
+                                        <td>{{ $panel->charges }}</td>
+                                        <td>{{ $panel->actual_charges }}</td>
                                         <td class="text-right">
+                                            <a class="btn btn-primary btn-sm panel-edit" data-id="{{$panel->id}}" data-toggle="modal" data-target="#viewModal"><i class="fa fa-eye"></i> View</a>
                                             <a class="btn btn-warning btn-sm panel-edit" data-id="{{$panel->id}}" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil"></i> Edit</a>
                                             <a class="btn btn-danger btn-sm panel-delete" data-id="{{$panel->id}}"><i class="fa fa-trash"></i> Delete</a>
                                         </td>
