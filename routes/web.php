@@ -13,6 +13,13 @@ Route::group(['namespace' => 'user'], function () {
     
     // Metro
     Route::get('/metro/{city_id}', 'MetroController@metro_lines');
+    Route::get('/metro_line/{metro_line_id}', 'MetroController@metro_line_stations');
+    Route::get('/station/{station_id}', 'MetroController@show_panels');
+    
+
+
+
+    Route::get('/stations/{city_id}', 'MetroController@all_stations');  // Yet to make
 
 });
 

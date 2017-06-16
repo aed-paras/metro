@@ -7,6 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="base-url" content="{{ url('/') }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -18,6 +19,7 @@
 
     @yield('import_styles')
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/user/user_style.css') }}" rel="stylesheet">
     @yield('custom_styles')
 
 </head>
@@ -86,9 +88,9 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
-    @yield('import_script')
+    @yield('import_scripts')
     <script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
-    @yield('custom_script')
+    @yield('custom_scripts')
 
 </body>
 </html>

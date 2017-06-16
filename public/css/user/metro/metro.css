@@ -1,0 +1,28 @@
+.metro_line_block{
+    text-align: center;
+    background: #fafafa;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: all .3s;
+}
+.metro_line_block:hover{
+    transform: scale(1.1);
+}
+
+.metro_line_image{
+    padding: 20px 0;
+    border: 1px solid #aaa;
+    border-bottom: none;
+}
+
+.metro_line_detail_block{
+    background: #08f;
+    color: #fff;
+    font-size: 20px;
+    padding: 5px;
+}
+
+
+.station_block{
+    margin: 10px 0;
+}

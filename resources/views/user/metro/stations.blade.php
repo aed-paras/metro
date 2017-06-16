@@ -6,41 +6,36 @@
     <link rel="stylesheet" href="{{ asset('/css/user/metro/metro.css') }}">
 @endsection
 
-
 @section('content')
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
 
+        {{-- <ol class="breadcrumb">
+            <li><a href="{{ url('/') }}">Home</a></li>
+            <li><a href="{{ url('/categories/') }}">Metro</a></li>
+            <li><a href="{{ url('/cities/') }}">{{ $metro_line->city->name }}</a></li>
+            <li><a href="{{ url('/metro/'.$metro_line->city->id) }}">{{ $metro_line->city->name }}</a></li>
+            <li class="active">{{ $metro_line->name }}</li>
+        </ol> --}}
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Metro Lines</h3>
+                <h3 class="panel-title">Stations</h3>
             </div>
             <div class="panel-body">
 
-                @if(!$metro_lines->isEmpty())
+                @if(!$stations->isEmpty())
 
                     <div class="page-header">
-                        <h4>Select Metro Line</h4>
+                        <h4>Stations on {{ $metro_line->name }}</h4>
                     </div>
-                    <span class="pull-right"><a href="{{ url('/stations/'.$city->id) }}" class="btn btn-default">Show All Stations Instead</a></span>
-                    <div class="clearfix"></div>
                     <?php $i=1; ?>
                     <div class="row">
-                    @foreach($metro_lines as $metro_line)
+                    @foreach($stations as $station)
 
                         <div class="col-sm-3">
-                            
-                            <div class="metro_line_block" data-id="{{ $metro_line->id }}">
-                                <div class="metro_line_image">
-                                    <img src="{{ asset('storage/metro/'.$metro_line->image) }}" alt="{{ $metro_line->name }}" width="80%" height="80%">
-                                </div>
-                                <div class="metro_line_detail_block">
-                                    <div class="metro_line_name">
-                                        {{ $metro_line->name }}
-                                    </div>
-                                </div>
+                            <div class="station_block">
+                                <a href="{{ url('metro/station/'.$station->id) }}" class="btn btn-primary btn-block">{{ $station->name }}</a>
                             </div>
-
                         </div>
 
                         @if($i%4 == 0)
