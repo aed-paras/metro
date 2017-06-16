@@ -12,7 +12,8 @@ class HomeController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $cities = \App\City::all();
-        return view('user.home', ['cities' => $cities]);    
+        $city = \App\City::first();
+        return redirect('metro/'.$city->id);
     }
+
 }

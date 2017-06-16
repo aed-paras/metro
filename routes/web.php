@@ -8,8 +8,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['namespace' => 'user'], function () {
+    
     Route::get('/home', 'HomeController@index')->name('home');
     
+    // Metro
+    Route::get('/metro/{city_id}', 'MetroController@metro_lines');
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'adminauth', 'namespace' => 'admin'], function () {
